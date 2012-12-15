@@ -54,4 +54,12 @@ class InterpreterTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function test_quote(
+	) {
+		$this->assertEquals(
+			"(a b c)",
+			$this->testee->evaluate("(quote (a b c))")
+		);
+	}
+
 }

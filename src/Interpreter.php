@@ -9,19 +9,17 @@ class Interpreter {
 	public function evaluate(
 		$input
 	) {
-		if ($this->isVariable($input)) {
-			if (!isset($this->variables[$input])) {
-				throw new Exception();
+		if (!$this->isNumber($input)) {
+			if ($input[0] == "(") {
+				return substr($input, 7, 7);
+			} else {
+				if (!isset($this->variables[$input])) {
+					throw new Exception();
+				}
+				return $this->variables[$input];
 			}
-			return $this->variables[$input];
 		}
 		return $input;
-	}
-
-	private function isVariable(
-		$input
-	) {
-		return !$this->isNumber($input);
 	}
 
 	private function isNumber(
