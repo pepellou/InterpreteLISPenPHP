@@ -14,7 +14,7 @@ class Parser {
 				return false;
 			}
 		}
-		return preg_match("/^[+-]?[0-9]*\.[0-9]*([eE][+-]?[0-9]+)?$|^[+-]?[0-9]+([eE][+-]?[0-9]+)?$/", $input) != false;
+		return preg_match("/^[+-]?([0-9]*\.[0-9]*|[0-9]+)([eE][+-]?[0-9]+)?$/", $input) != false;
 	}
 
 }
