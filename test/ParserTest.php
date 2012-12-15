@@ -14,7 +14,7 @@ class Parser {
 				return false;
 			}
 		}
-		return preg_match("/^[+-]?([0-9]*\.[0-9]*|[0-9]+)([eE][+-]?[0-9]+)?$/", $input) != false;
+		return preg_match("/^[+-]?([0-9]*\.[0-9]+|[0-9]+\.[0-9]*|[0-9]+)([eE][+-]?[0-9]+)?$/", $input) != false;
 	}
 
 }
@@ -74,6 +74,9 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 			"bad syntax (a)" => array("-12e"),
 			"bad syntax (b)" => array("-1..2"),
 			"bad syntax (c)" => array("1-2"),
+			"bad syntax (d)" => array("."),
+			"bad syntax (e)" => array(".e12"),
+			"bad syntax (f)" => array("+."),
 		);
 	}
 
