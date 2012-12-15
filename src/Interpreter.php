@@ -4,11 +4,16 @@ require_once dirname(__FILE__)."/Parser.php";
 
 class Interpreter {
 
+	protected $variables = array();
+
 	public function evaluate(
 		$input
 	) {
 		if ($this->isVariable($input)) {
-			throw new Exception();
+			if (!isset($this->variables[$input])) {
+				throw new Exception();
+			}
+			return $this->variables[$input];
 		}
 		return $input;
 	}

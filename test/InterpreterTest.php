@@ -2,6 +2,17 @@
 
 require_once dirname(__FILE__)."/../src/Interpreter.php";
 
+class TestableInterpreter extends Interpreter {
+
+	public function setVariable(
+		$var,
+		$value
+	) {
+		$this->variables[$var] = $value;
+	}
+
+}
+
 class InterpreterTest extends PHPUnit_Framework_TestCase {
 
 	public function test_numbersAreEvaluatedAsThemselves(
@@ -24,6 +35,19 @@ class InterpreterTest extends PHPUnit_Framework_TestCase {
 		$interpreter = new Interpreter();
 		
 		$interpreter->evaluate($aVariable);
+	}
+
+	public function test_variableEvaluatesToValueIfExist(
+	) {
+		$aVariable = "x";
+		$aValue = "12";
+		$interpreter = new TestableInterpreter();
+		$interpreter->setVariable($aVariable, $aValue);
+		
+		$this->assertEquals(
+			$aValue,
+			$interpreter->evaluate($aVariable)
+		);
 	}
 
 }
