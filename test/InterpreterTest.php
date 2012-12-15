@@ -19,8 +19,8 @@ class InterpreterTest extends PHPUnit_Framework_TestCase {
 	* @expectedException Exception
 	*/
 	public function test_variableEvaluatesErrorIfNotExist(
-		$aVariable
 	) {
+		$aVariable = "x";
 		$interpreter = new Interpreter();
 		
 		$interpreter->evaluate($aVariable);
